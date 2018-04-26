@@ -13,17 +13,18 @@ class Home extends Component {
   state = {
     allChallenges: [],
     selectedChallenge: {}
-   }
-
-   async componentDidMount() {
+  }
+  
+  async componentDidMount() {
     const { data } = await axios.get(`http://localhost:3396/api/challenges`)
-    this.setState({ allChallenges: data });
-   }
-
+    console.log(data, 'all challenges');
+    this.setState({ allChallenges: data }); // expecting this to be object with key being challenge id and value being number of
+  }
+  
   randomSlingId = () => {
     slingId = `${randomstring.generate()}`;
   }
-
+  
   handleDuelClick = () => {
     this.randomSlingId();
     this.props.history.push({
@@ -46,6 +47,7 @@ class Home extends Component {
 
   render() {
     return (
+      
       <div className="landing-page-container">
         <Logo
           className="landing-page-logo"
@@ -56,8 +58,10 @@ class Home extends Component {
             return (
             <option
               value={JSON.stringify(challenge)}
+              disabled={challenge.difficulty < 2 ? false : 'disabled'}
             >
               {challenge.title}
+              {challenge.difficulty < 2 ? ' (available)' : ' (full)'}
             </option>)
           }
           )}
