@@ -17,15 +17,11 @@ class Home extends Component {
   
   async componentDidMount() {
     const { data } = await axios.get(`http://localhost:3396/api/challenges`)
-    console.log(data, 'all challenges');
-    console.log(this.state.selectedChallenge , 'selected challenge')
     this.setState({ allChallenges: data }); // expecting this to be object with key being challenge id and value being number of
   }
-  
+
   handleDuelClick = () => {
     let appThis = this;
-    console.log('flag', appThis);
-    console.log('flag', JSON.parse(appThis.state.selectedChallenge).id);
     this.props.history.push({
       pathname: `/${JSON.parse(appThis.state.selectedChallenge).id}`,
       state: {
@@ -42,7 +38,6 @@ class Home extends Component {
     e.preventDefault();
     const { value } = e.target;
     this.setState({ selectedChallenge: value });
-    console.log('inside challenge select', this.state.selectedChallenge)
   }
 
   render() {

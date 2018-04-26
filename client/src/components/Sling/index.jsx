@@ -12,13 +12,15 @@ class SlingIndex extends Component {
     this.socket = io('http://localhost:4155', {
       query: {
         roomId: this.props.location.pathname.slice(1),
-        player: this.props.location.state ? 1 : 2
+        // (JSON.parse(this.props.location.state.challenge.content) === 1) ? 2 :
+        player: JSON.parse(this.props.location.state.challenge).difficulty === 1 ? 2 : 1
       }
     });
     this.setState({ socket: this.socket });
   }
 
   render() {
+    console.log('location state', this.props.location.state)
     if (this.props.location.state) {
       return (
         <Sling socket={this.state.socket} player={this.socket.query.player} challenge={this.props.location.state.challenge}/>
