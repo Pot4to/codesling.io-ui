@@ -20,7 +20,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: aaronbucket123
-    key: latest.zip
+    key: latest_ui.zip
     bundle_type: zip
     application: codesling
     deployment_group: codesling
