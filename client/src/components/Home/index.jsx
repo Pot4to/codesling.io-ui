@@ -17,7 +17,7 @@ class Home extends Component {
 
    async componentDidMount() {
     const { data } = await axios.get(`http://localhost:3396/api/challenges`)
-    this.setState({ allChallenges: data });
+    this.setState({ allChallenges: data , selectedChallenge: data[0]});
    }
 
   randomSlingId = () => {

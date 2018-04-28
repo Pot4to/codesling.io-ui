@@ -70,7 +70,6 @@ class AddChallenge extends Component {
   }
 
   render() {
-    console.log('current state: ', this.state)
     return (
       <div className="login-form-container">
         <Logo
@@ -78,7 +77,7 @@ class AddChallenge extends Component {
         />
         <form className="auth-form">
         <div>
-          <label>Title </label><br/>
+          <label>Function Name </label><br/>
           <Input className="title-input"
             className='title-input'
             name='title'
@@ -100,7 +99,7 @@ class AddChallenge extends Component {
         </div> <br/>
         <label>Test Cases <br/> &nbsp;&nbsp;Please enter each test case as shown in the sample below:</label>
         <div>
-            <textarea className="test-case-input" name="testCase" cols="80" rows="15" onChange={this.handleChallengeInput} value={`function tests() {\n  var expected = FILL_ME_IN;\n  var actual = ${this.state.title}(FILL_ME_IN);\n  if (expected === actual) {\n    console.log("solved");\n    return actual;\n  } else {\n    console.log("expected " + expected + ", but got " + actual);\n  }\n}\n\ntests();`}></textarea>
+            <textarea className="test-case-input" name="testCase" cols="80" rows="15" onChange={this.handleChallengeInput}>{`function tests() {\n  var expected = FILL_ME_IN;\n  var actual = INSERT_TITLE_HERE(FILL_ME_IN);\n  if (expected === actual) {\n    console.log("solved");\n    return actual;\n  } else {\n    console.log("expected " + expected + ", but got " + actual);\n  }\n}\n\ntests();`}</textarea>
         </div>
         { this.state.validated ? 
         (<div>
