@@ -53,7 +53,7 @@ class AddChallenge extends Component {
       testCase,
     }
     const result = await axios.post('http://localhost:3396/api/challenges/addChallenge', body);
-    post(`http://localhost:3396/api/testCases/${result.data[0].id}`, body.testCase);
+    const success = await axios.post(`http://localhost:3396/api/testCases`, { content: body.testCase, challenge_id: result.data[0].id });
     this.props.history.push('/home');
   }
 
@@ -100,7 +100,7 @@ class AddChallenge extends Component {
         </div> <br/>
         <label>Test Cases <br/> &nbsp;&nbsp;Please enter each test case as shown in the sample below:</label>
         <div>
-            <textarea className="test-case-input" name="testCase" cols="80" rows="15" onChange={this.handleChallengeInput}>{'function tests () {\n  var expected = 1;\n  var actual = func(1);\n  if (expected === actual) {\n    console.log("solved");\n    return actual;\n  } else {\n    console.log("expected " + expected + ", but got " + actual);\n  }\n}\n\ntests();'}</textarea>
+            <textarea className="test-case-input" name="testCase" cols="80" rows="15" onChange={this.handleChallengeInput} value={`function ${this.state.title}() {\n  var expected = 1;\n  var actual = func(1);\n  if (expected === actual) {\n    console.log("solved");\n    return actual;\n  } else {\n    console.log("expected " + expected + ", but got " + actual);\n  }\n}\n\ntests();`}></textarea>
         </div>
         { this.state.validated ? 
         (<div>
