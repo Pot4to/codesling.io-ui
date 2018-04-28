@@ -11,6 +11,7 @@ const Logo = ({
       className={`logo ${className ? className : ''}`}
       src={codeslingLogo}
     />
+    
   );
 };
 
