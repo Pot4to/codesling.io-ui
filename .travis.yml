@@ -10,7 +10,7 @@ deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    local_dir: dpl_cd_upload
+    local_dir: dpl_cd_upload_ui
     skip_cleanup: true
     on: &2
       repo: Pot4to/codesling.io-ui
@@ -34,5 +34,5 @@ before_script:
 
 script:
   - find . -type d -name "*node_modules*" -prune -o -type f -print | zip latest_ui.zip -@
-  - mkdir -p dpl_cd_upload
-  - mv latest_ui.zip dpl_cd_upload/latest_ui.zip
+  - mkdir -p dpl_cd_upload_ui
+  - mv latest_ui.zip dpl_cd_upload_ui/latest_ui.zip
